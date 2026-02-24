@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manage Modules</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Modules</h1>
+        <div class="breadcrumb">
+            <a href="/admin/dashboard">Dashboard</a> > <span>Modules</span>
+        </div>
+        
+        <div class="action-bar">
+            <a href="/admin/modules/add" class="btn btn-primary">+ Add Module</a>
+            <a href="/admin/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Title</th>
+                    <th>Assigned To</th>
+                    <th>Status</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% modules.forEach(m => { %>
+                    <tr>
+                        <td><%= m.projectId ? m.projectId.title : 'N/A' %></td>
+                        <td><%= m.title %></td>
+                        <td><%= m.assignedTo ? m.assignedTo.name : 'Unassigned' %></td>
+                        <td><span class="status-badge status-<%= m.status.toLowerCase().replace(' ', '-') %>"><%= m.status %></span></td>
+                        <td><%= m.startDate ? m.startDate.toDateString() : '' %></td>
+                        <td><%= m.endDate ? m.endDate.toDateString() : '' %></td>
+                        <td>
+                            <a href="/admin/modules/edit/<%= m._id %>" class="btn btn-edit">Edit</a>
+                            <a href="/admin/modules/delete/<%= m._id %>" class="btn btn-delete" onclick="return confirm('Delete this module?')">Delete</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

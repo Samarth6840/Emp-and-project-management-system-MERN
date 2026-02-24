@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <h1>Welcome to Employee & Project Management System</h1>
+            <p>Please login or register to continue.</p>
+            
+            <% if (user) { %>
+                <div style="margin: 20px 0;">
+                    <p>Welcome back, <strong><%= user.name %></strong>!</p>
+                    <% if (user.role === 'admin') { %>
+                        <a href="/admin/dashboard" class="btn btn-primary">Go to Admin Dashboard</a>
+                    <% } else { %>
+                        <a href="/user/projects" class="btn btn-primary">Go to User Dashboard</a>
+                    <% } %>
+                    <a href="/logout" class="btn btn-secondary">Logout</a>
+                </div>
+            <% } else { %>
+                <div style="margin: 20px 0;">
+                    <a href="/login" class="btn btn-primary">Login</a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+  <link rel="stylesheet" href="/css/style.css">
+
+<h1>Update Project Status</h1>
+<form method="POST">
+    <select name="status">
+        <option value="Not Started" <%= project.status === 'Not Started' ? 'selected' : '' %>>Not Started</option>
+        <option value="In Progress" <%= project.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+        <option value="Completed" <%= project.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+    </select>
+    <button type="submit">Update</button>
+</form>

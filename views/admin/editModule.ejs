@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Module</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Module</h1>
+        
+        <div class="breadcrumb">
+            <a href="/admin/dashboard">Dashboard</a> > 
+            <a href="/admin/modules">Modules</a> > 
+            <span>Edit Module</span>
+        </div>
+
+        <div class="action-bar">
+            <a href="/admin/modules" class="btn btn-secondary">Back to Modules</a>
+        </div>
+
+        <form action="/admin/modules/edit/<%= moduleData._id %>" method="POST" class="form-card">
+            
+            <div class="form-group">
+                <label>Project</label>
+                <select name="projectId" required>
+                    <% projects.forEach(p => { %>
+                        <option value="<%= p._id %>" <%= p._id.toString() === moduleData.projectId.toString() ? 'selected' : '' %>>
+                            <%= p.title %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Module Title</label>
+                <input type="text" name="title" value="<%= moduleData.title %>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="description"><%= moduleData.description %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Assign To</label>
+                <select name="assignedTo" required>
+                    <% users.forEach(u => { %>
+                        <option value="<%= u._id %>" <%= u._id.toString() === moduleData.assignedTo.toString() ? 'selected' : '' %>>
+                            <%= u.name %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <select name="status">
+                    <option value="Pending" <%= moduleData.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                    <option value="In Progress" <%= moduleData.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+                    <option value="Completed" <%= moduleData.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Progress Notes</label>
+                <textarea name="progressNotes"><%= moduleData.progressNotes %></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">Update Module</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<h1>Edit Project</h1>
+<form method="POST">
+    <input type="text" name="title" placeholder="Title" value="<%= project.title %>" required><br>
+    <textarea name="description" placeholder="Description"><%= project.description || '' %></textarea><br>
+    <select name="assignedTo">
+        <option value="">-- Assign Employee --</option>
+        <% employees.forEach(emp => { %>
+            <option value="<%= emp._id %>" <%= project.assignedTo && project.assignedTo.toString() === emp._id.toString() ? 'selected' : '' %>><%= emp.name %></option>
+        <% }) %>
+    </select><br>
+    <select name="status">
+        <option value="Not Started" <%= project.status === 'Not Started' ? 'selected' : '' %>>Not Started</option>
+        <option value="In Progress" <%= project.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+        <option value="Completed" <%= project.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+    </select><br>
+    <input type="date" name="startDate" value="<%= project.startDate ? project.startDate.toISOString().split('T')[0] : '' %>"><br>
+    <input type="date" name="endDate" value="<%= project.endDate ? project.endDate.toISOString().split('T')[0] : '' %>"><br>
+    <button type="submit">Update Project</button>
+</form>

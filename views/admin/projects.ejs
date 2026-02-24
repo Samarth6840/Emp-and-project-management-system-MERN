@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manage Projects</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Projects</h1>
+        <div class="breadcrumb">
+            <a href="/admin/dashboard">Dashboard</a> > <span>Projects</span>
+        </div>
+        
+        <div class="action-bar">
+            <a href="/admin/projects/add" class="btn btn-primary">+ Add Project</a>
+            <a href="/admin/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Project Title</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% projects.forEach(p => { %>
+                    <tr>
+                        <td><%= p.title %></td>
+                        <td><%= p.description || 'No description' %></td>
+                        <td>
+                            <a href="/admin/projects/<%= p._id %>/modules" class="btn btn-primary">View Modules</a>
+                            <a href="/admin/projects/edit/<%= p._id %>" class="btn btn-edit">Edit</a>
+                            <a href="/admin/projects/delete/<%= p._id %>" class="btn btn-delete" onclick="return confirm('Delete this project?')">Delete</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

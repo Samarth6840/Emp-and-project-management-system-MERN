@@ -1,0 +1,15 @@
+<h1>My Projects</h1>
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Title</th><th>Status</th><th>Action</th>
+    </tr>
+    <% projects.forEach(p => { %>
+        <tr>
+            <td><%= p.title %></td>
+            <td><%= p.status %></td>
+            <td>
+                <a href="/user/projects/update/<%= p._id %>">Update Status</a>
+            </td>
+        </tr>
+    <% }) %>
+</table>
